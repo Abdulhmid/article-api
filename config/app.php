@@ -172,6 +172,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Collective\Bus\BusServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -237,6 +238,8 @@ return [
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 
