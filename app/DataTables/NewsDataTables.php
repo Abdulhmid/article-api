@@ -16,6 +16,10 @@ class NewsDataTables extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->editColumn('image','<img src="{!! GLobalHelper::checkImage($image) !!}" style="max-height:100px" class="thumbnail"> ')
+            ->editColumn('content', function ($row) {
+                return str_limit($row->content,125);
+            })
             ->editColumn('created_at', function ($row) {
                 return \GLobalHelper::formatDate($row->created_at);
             })
@@ -73,13 +77,21 @@ class NewsDataTables extends DataTable
                 'title' => 'Judul',
                 'width' => '35%'
             ],
+            'image' => [
+                'title' => 'Image',
+                'width' => '15%'
+            ],
+            'content' => [
+                'title' => 'Konten',
+                'width' => '25%'
+            ],
             'created_at' => [
                 'title' => 'Ditulis',
-                'width' => '25%'
+                'width' => '15%'
             ],
             'updated_at' => [
                 'title' => 'Diubah',
-                'width' => '25%'
+                'width' => '15%'
             ],
         ];
     }
