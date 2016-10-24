@@ -14,4 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/login', 'Api\ApiController@postLogin'); 
+Route::get('/logout', 'Api\ApiController@getLogout'); 
 Route::resource('/article', 'Api\ArticlesController'); 

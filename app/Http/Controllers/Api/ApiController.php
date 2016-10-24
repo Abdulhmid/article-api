@@ -38,7 +38,9 @@ class ApiController extends Controller
      */
     public function index()
     {
-        return "s";
+        return response()->json([
+            'messages' => 'Api Testing'
+        ]);
     }
 
     /**
@@ -55,5 +57,13 @@ class ApiController extends Controller
             'token' => $token,
             'data'  => $select->first()->toArray()
         ]);
+    }
+
+    public function getLogout()
+    {
+        $token = $this->jwtAuth->getToken();
+
+        $this->jwtAuth->invalidate($token);
+        return response()->json(['messages' => 'Berhasil Keluar']);
     }
 }
