@@ -25,12 +25,12 @@ class NewsRequest extends FormRequest
     {
         $rules = [
             'title'  => 'required',
-            'tagline'  => 'required',
             'tag'  => '',
             'status'  => 'required',
             'meta_title'  => 'max:70',
             'meta_keyword'  => '',
             'meta_description'  => 'max:160',
+            'content'  => 'required',
             'photo'     => 'max:2000|mimes:jpeg,gif,png'
         ];
 

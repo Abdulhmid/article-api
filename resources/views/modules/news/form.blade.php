@@ -37,10 +37,9 @@
                         <div class="col-md-8">
                             {!! form_row($form->title, ['default_value' => isset($row) ? $row->title: '']) !!}
 
-                            {!! form_row($form->tagline, ['default_value' => isset($row) ? $row->tagline: '']) !!}
-                            
                             {!! form_row($form->tag, ['default_value' => isset($row) ? $row->tag: '']) !!}
                             {!! form_row($form->status,$options = ['attr' => ['class' => 'styled']]) !!}
+                            {!! form_row($form->content, ['default_value' => isset($row) ? $row->content: '']) !!}
                             <fieldset>
                                 <legend class="text-bold">Meta Data</legend>
                                 <div class="form-group" style="margin-left: -14px;">

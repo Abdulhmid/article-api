@@ -10,12 +10,6 @@ class NewsForm extends Form
     {
     	$this
     		->add('title','text')
-            ->add('tagline', 'textarea',
-                [
-                    'attr' => ['class' => 'form-control wysihtml5 wysihtml5-min','id'=>"summernote"],
-                    'label' => 'Tagline'
-                ]
-            )
     		->add('tag','text',[
                     'attr' => ['class' => 'form-control tokenfield-teal']
                 ])
@@ -40,6 +34,9 @@ class NewsForm extends Form
     		->add('meta_description','textarea',[
     				'label' => false
     			])
+            ->add('content','textarea',[
+                    'label' => false
+                ])
             ->add('photo','file',[
                 'attr' => [
                     'id' => 'file',
