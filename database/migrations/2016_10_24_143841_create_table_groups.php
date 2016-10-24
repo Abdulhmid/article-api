@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTableGroups extends Migration
 {
+    protected $table = 'groups';
     /**
      * Run the migrations.
      *
@@ -13,7 +14,25 @@ class CreateTableGroups extends Migration
      */
     public function up()
     {
-        //
+        if (!Schema::hasTable($this->table)) {
+
+            Schema::create($this->table, function (Blueprint $table) {
+
+                /** Primary key  */
+                $table->increments('group_id');
+
+                /** Main data  */
+                $table->string('group_name', 255);
+                $table->text('description')->nullable();
+                $table->string('created_by')->default('system')->nullable();
+
+                /* Action */
+                $table->nullableTimestamps();
+                $table->softDeletes();
+
+                
+            });
+        }
     }
 
     /**
@@ -23,6 +42,6 @@ class CreateTableGroups extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists($this->table);
     }
 }

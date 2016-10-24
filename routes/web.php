@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('/groups', 'Backend\GroupsController');
+	Route::resource('/users', 'Backend\UsersController');
+	Route::resource('/news', 'Backend\NewsController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

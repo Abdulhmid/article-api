@@ -12,5 +12,38 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        $data = [
+            [
+                'id' => 1,
+                'name' => 'Admin'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Editor'
+            ]
+        ];
+
+        foreach ($data as $item) {
+            \DB::table('groups')->insert(
+                [
+                    'group_id' => $item['id'],
+                    'group_name' => $item['name'],
+                    'created_at' => \Carbon\Carbon::now(),
+                    'updated_at' => \Carbon\Carbon::now()
+                ]
+            );
+        }
+
+        \DB::table('users')->insert([
+            [
+                'username' => 'superadmin',
+                'password' => bcrypt('12345'),
+                'email' => 'admin@app.com',
+                'name' => 'Programmer Superadmin',
+                'group_id' => 1,
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now()
+            ]
+        ]);
     }
 }
