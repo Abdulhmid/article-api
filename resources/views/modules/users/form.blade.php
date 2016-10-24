@@ -41,9 +41,6 @@
                             {!! form_row($form->email, ['default_value' => isset($row) ? $row->email: '']) !!}
                             {!! form_row($form->password,['default_value' => '']) !!}
                             {!! form_row($form->password_confirmation) !!}
-                            {!! form_row($form->phone, ['default_value' => isset($row) ? $row->phone: '']) !!}
-                            {!! form_row($form->active) !!}
-                            {!! form_row($form->address) !!}
                         </div>
                         <div class="col-md-5">
                             

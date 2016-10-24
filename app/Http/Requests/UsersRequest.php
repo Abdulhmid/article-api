@@ -25,8 +25,6 @@ class UsersRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
-            'phone' => 'required',
-            'active' => 'required',
             'group_id' => 'required',
             'photo'  => 'max:2000|mimes:jpeg,gif,png'
         ];

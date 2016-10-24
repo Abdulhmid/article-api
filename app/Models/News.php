@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product_category extends Model
+class News extends Model
 {
-    protected $table      = 'category_product';
+    protected $table      = 'news';
     protected $primaryKey = 'id';
     protected $guarded    = ['id'];
 

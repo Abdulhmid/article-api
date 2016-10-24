@@ -23,10 +23,10 @@ class GroupsDataTables extends DataTable
                 return \GLobalHelper::formatDate($row->updated_at);
             })
             ->addColumn('action', function ($row) {
-                $column = "<a href=\"" . route('groups.edit', $row->id) . "\" class=\"btn btn-flat btn-default btn-sm\" data-toggle=\"tooltip\" data-original-title=\"Edit\">
+                $column = "<a href=\"" . route('groups.edit', $row->group_id) . "\" class=\"btn btn-flat btn-default btn-sm\" data-toggle=\"tooltip\" data-original-title=\"Edit\">
                     <i class=\"fa fa-pencil\"></i> Edit
                 </a>
-                <a href=\"" . route('groups.destroy', $row->id) . "\" class=\"btn btn-flat btn-danger btn-sm btn-delete\" data-toggle=\"tooltip\" data-original-title=\"Delete\" onclick=\"swal_alert(this,null,'delete','" . csrf_token() . "'); return false;\">
+                <a href=\"" . route('groups.destroy', $row->group_id) . "\" class=\"btn btn-flat btn-danger btn-sm btn-delete\" data-toggle=\"tooltip\" data-original-title=\"Delete\" onclick=\"swal_alert(this,null,'delete','" . csrf_token() . "'); return false;\">
                     <i class=\"fa fa-trash-o\"></i> Hapus
                 </a>";
 
@@ -69,7 +69,7 @@ class GroupsDataTables extends DataTable
     protected function getColumns()
     {
         return [
-            'name' => [
+            'group_name' => [
                 'title' => 'Nama',
                 'width' => '35%'
             ],

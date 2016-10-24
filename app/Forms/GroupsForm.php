@@ -9,9 +9,10 @@ class GroupsForm extends Form
     public function buildForm()
     {
         $this
-            ->add('name', 'text',
+            ->add('group_name', 'text',
                 [
-                    'attr' => ['class' => 'form-control']
+                    'attr' => ['class' => 'form-control'],
+                    'label' => 'Nama Kelompok'
                 ]
             )
             ->add('description', 'textarea',

@@ -26,9 +26,9 @@ class GroupsRequest extends FormRequest
         $lastUrl = \GLobalHelper::lastUrl();
 
         if(!empty(\Request::segment(2))) :
-            $rules['name']    = 'required|unique:groups,name,'.$lastUrl.',id';
+            $rules['group_name']    = 'required|unique:groups,group_name,'.$lastUrl.',group_id';
         else :
-            $rules['name']    = 'required|unique:groups,name';
+            $rules['group_name']    = 'required|unique:groups,group_name';
         endif;
 
         return $rules;

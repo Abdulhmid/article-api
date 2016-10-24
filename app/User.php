@@ -27,6 +27,6 @@ class User extends Authenticatable
 
     /* Relation */
     public function groups() {
-        return $this->belongsTo('App\Models\Groups', 'group_id', 'id');
+        return $this->belongsTo('App\Models\Groups', 'group_id', 'group_id');
     }
 }

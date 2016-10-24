@@ -71,7 +71,7 @@ class UsersDataTables extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => [
+            'group_id' => [
                 'visible' => false,
                 'title' => 'Nama'
             ],
@@ -83,9 +83,6 @@ class UsersDataTables extends DataTable
             ],
             'name' => ['title' => 'Nama'],
             'email' => ['title' => 'Email'],
-            'address' => [
-                'title' => 'Alamat'
-            ],
             'created_at' => [
                 'title' => 'Ditulis'
             ],
