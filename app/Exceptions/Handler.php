@@ -4,6 +4,12 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\QueryException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -20,6 +26,7 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+        HttpException::class,
     ];
 
     /**
@@ -42,9 +49,29 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+        // if ($request->segment(1) == "api") {
+        //     if ($e instanceof NotFoundHttpException) {
+        //         return response()->json(['error' => 'Url Not Found'], 500 );
+        //     } elseif($e instanceof HttpException){
+        //         return response()->json(['error' => $e->getMessage()], $e->getStatusCode());
+        //     }else if ($e instanceof \ErrorException) {
+        //         return response()->json(['error' => 'Internal Server Error'], 500 );
+        //     }
+        // }
+
+        // if (config('app.debug')) {
+        //     return parent::render($request, $e);
+        // }else{
+        //     return response()->json(['error' => 'Internal Server Error'], 500 );
+        // }
+
+        // if ($e instanceof ModelNotFoundException) {
+        //     $e = new NotFoundHttpException($e->getMessage(), $e);
+        // }
+
+        return parent::render($request, $e);
     }
 
     /**
