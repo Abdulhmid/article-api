@@ -51,25 +51,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        // if ($request->segment(1) == "api") {
-        //     if ($e instanceof NotFoundHttpException) {
-        //         return response()->json(['error' => 'Url Not Found'], 500 );
-        //     } elseif($e instanceof HttpException){
-        //         return response()->json(['error' => $e->getMessage()], $e->getStatusCode());
-        //     }else if ($e instanceof \ErrorException) {
-        //         return response()->json(['error' => 'Internal Server Error'], 500 );
-        //     }
-        // }
+        if ($request->segment(1) == "api") {
+            if ($e instanceof NotFoundHttpException) {
+                return response()->json(['error' => 'Url Not Found'], 500 );
+            } elseif($e instanceof HttpException){
+                return response()->json(['error' => $e->getMessage()], $e->getStatusCode());
+            }else if ($e instanceof \ErrorException) {
+                return response()->json(['error' => 'Internal Server Error'], 500 );
+            }
+        }
 
-        // if (config('app.debug')) {
-        //     return parent::render($request, $e);
-        // }else{
-        //     return response()->json(['error' => 'Internal Server Error'], 500 );
-        // }
+        if (config('app.debug')) {
+            return parent::render($request, $e);
+        }else{
+            return response()->json(['error' => 'Internal Server Error'], 500 );
+        }
 
-        // if ($e instanceof ModelNotFoundException) {
-        //     $e = new NotFoundHttpException($e->getMessage(), $e);
-        // }
+        if ($e instanceof ModelNotFoundException) {
+            $e = new NotFoundHttpException($e->getMessage(), $e);
+        }
 
         return parent::render($request, $e);
     }

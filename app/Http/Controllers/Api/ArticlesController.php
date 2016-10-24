@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Serializers\ArticlesSerializer;
+use App\Transformers\ArticlesTransformer;
 use Tymon\JWTAuth\JWTAuth;
 use App\Models as Md;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
+
 
 class ArticlesController extends Controller
 {
@@ -28,9 +33,16 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return "s";
+        $articles = $this->news->whereStatus('1')->get(['id', 'title', 'slug', 'content','user_id']);
+        $resource = new Collection($articles, new ArticlesTransformer());
+        $array = $this->serializeOutput($resource);
+        
+        return response()->json([
+            // $request, 
+            $array
+        ]);
     }
 
     /**
@@ -62,7 +74,10 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //
+        $articles = $this->news->find($id);
+        return response()->json([
+            'data' => $articles
+        ]);
     }
 
     /**
@@ -96,6 +111,20 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articles = $this->news->find($id)->delete();
+        return response()->json([
+            'message' => "Article Berhasil Dihapus"
+        ]);
+    }
+
+    public function serializeOutput($resource)
+    {
+        $manager = new Manager();
+        $manager->setSerializer(new ArticlesSerializer());
+
+        $articles = $manager->createData($resource)->toArray();
+        $count = count($articles['articles']);
+
+        return array_add($articles, "count", $count);
     }
 }

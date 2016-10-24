@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -50,6 +51,9 @@ class ApiController extends Controller
      */
     public function postLogin(Requests\ApiLoginRequest $request)
     {
+        if (!Auth::attempt(['username' => $request['username'], 'password' => $request['password']])) {
+            return response()->json(['messages' => 'Username dan Password Tidak Cocok']);
+        }
         $select = $this->user->whereUsername($request['username']);
         $token = $this->createToken($select->first()->toArray());
 
