@@ -31,7 +31,8 @@ Penggunaan Api API
 
 API Login
 ------------
-
+- Contoh Penggunaan
+![alt tag](http://url/to/img.png)
 - Response
 ```{.json}
 	{
@@ -51,7 +52,8 @@ API Login
 
 API Daftar Artikel
 ------------
-
+- Contoh Penggunaan
+![alt tag](http://url/to/img.png)
 - Response
 ```{.json}
 	[
@@ -79,7 +81,8 @@ API Daftar Artikel
 
 API Ambil Artikel Berdasarkan ID
 ------------
-
+- Contoh Penggunaan
+![alt tag](http://url/to/img.png)
 - Response
 ```{.json}
 	{
