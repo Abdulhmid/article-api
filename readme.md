@@ -32,7 +32,7 @@ Penggunaan Api API
 API Login
 ------------
 - Contoh Penggunaan
-![alt tag](http://url/to/img.png)
+![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/1.png)
 - Response
 ```{.json}
 	{
@@ -53,7 +53,7 @@ API Login
 API Daftar Artikel
 ------------
 - Contoh Penggunaan
-![alt tag](http://url/to/img.png)
+![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/2.png)
 - Response
 ```{.json}
 	[
@@ -82,7 +82,7 @@ API Daftar Artikel
 API Ambil Artikel Berdasarkan ID
 ------------
 - Contoh Penggunaan
-![alt tag](http://url/to/img.png)
+![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/3.png)
 - Response
 ```{.json}
 	{
