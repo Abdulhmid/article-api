@@ -45,5 +45,16 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now()
             ]
         ]);
+        \DB::table('users')->insert([
+            [
+                'username' => 'editor',
+                'password' => bcrypt('123456'),
+                'email' => 'editor@app.com',
+                'name' => 'Editor App',
+                'group_id' => 2,
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now()
+            ]
+        ]);
     }
 }
