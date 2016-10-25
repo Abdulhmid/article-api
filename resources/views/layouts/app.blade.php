@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Interior design Website Template | Home :: {{ config('app.name', 'Tokayu') }}</title>
+        <title>Test App | Home :: {{ config('app.name', 'Test App') }}</title>
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"  media="all" />
         <link href="{{ asset('css/style2.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/tsc_carousel_hor.css') }}" type="text/css" rel="stylesheet" />
