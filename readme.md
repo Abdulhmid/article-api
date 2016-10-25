@@ -33,7 +33,7 @@ API Login
 ------------
 - Path : 
     ```
-       $path/api/v1/login
+       $url/api/v1/login
     ```
 - Contoh Penggunaan
 ![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/1.png)
@@ -58,7 +58,7 @@ API Daftar Artikel
 ------------
 - Path : 
     ```
-       $path/api/v1/article
+       $url/api/v1/article
     ```
 - Contoh Penggunaan
 ![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/2.png)
@@ -91,7 +91,7 @@ API Ambil Artikel Berdasarkan ID
 ------------
 - Path : 
     ```
-       $path/api/v1/article/{$id}
+       $url/api/v1/article/{$id}
     ```
 - Contoh Penggunaan
 ![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/3.png)
