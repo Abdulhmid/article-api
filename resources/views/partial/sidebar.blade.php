@@ -29,12 +29,17 @@
                     <i class="fa fa-users"></i> <span>Groups</span>
                 </a>
             </li>
+            <li class="{!! $segment == 'modules' ? 'active' : '' !!}">
+                <a href="{!! url('modules') !!}">
+                    <i class="fa fa-users"></i> <span>Modules</span>
+                </a>
+            </li>
 
             <li class="header">Setting</li>
 
             <li class="{!! $segment == 'config' ? 'active' : '' !!}">
                 <a href="{!! url('modules/access') !!}">
-                    <i class="fa fa-user-secret"></i> <span>Konfigurasi</span>
+                    <i class="fa fa-user-secret"></i> <span>Konfigurasi ACL</span>
                 </a>
             </li>
         </ul>
