@@ -13,6 +13,7 @@ use App\Models as Md;
 
 class NewsController extends Controller
 {
+    use AccessCheckerTrait;
     protected $model;
     protected $title = "Berita";
     protected $url = "news";
@@ -20,11 +21,14 @@ class NewsController extends Controller
     protected $form;
 
     public function __construct(
-        Md\News $model
+        Md\News $model,
+        Md\Modules $modules
     )
     {
-        $this->model    = $model;
+        $this->model        = $model;
+        $this->modules      = $modules;
         $this->form     = NewsForm::class;
+        $this->info = $this->modules->makeInfo($this->url);
     }
 
     /**
@@ -34,6 +38,7 @@ class NewsController extends Controller
      */
     public function index(NewsDataTables $dataTable)
     {
+        $this->checkAccess('index');
         $data['title'] = $this->title;
         $data['breadcrumb'] = $this->url;
 
@@ -47,6 +52,7 @@ class NewsController extends Controller
      */
     public function create(FormBuilder $formBuilder)
     {
+        $this->checkAccess('create');
         $form = $formBuilder->create($this->form, [
             'method' => 'POST',
             'route' => $this->url . '.store'
@@ -67,6 +73,7 @@ class NewsController extends Controller
      */
     public function store(Requests\NewsRequest $request)
     {
+        $this->checkAccess('create');
     	$input = $request->except(['save_continue','photo']);
     	$input['slug'] = str_slug($request->get('title'));
     	$input['user_id'] = \Auth::user()->id;
@@ -102,6 +109,7 @@ class NewsController extends Controller
      */
     public function edit(FormBuilder $formBuilder, $id)
     {
+        $this->checkAccess('edit');
         $model = $this->model->find($id);
 
         $form = $formBuilder->create($this->form, [
@@ -127,6 +135,7 @@ class NewsController extends Controller
      */
     public function update(Requests\NewsRequest $request, $id)
     {
+        $this->checkAccess('edit');
     	$input = $request->except(['save_continue','photo']);
     	$input['slug'] = str_slug($request->get('title'));
     	$input['user_id'] = \Auth::user()->id;
@@ -152,6 +161,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkAccess('delete');
         $find = $this->model->find($id);
 
         $find->delete();

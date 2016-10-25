@@ -43,7 +43,7 @@
                 <div class="title">Anda Tidak Memiliki Accses.</div>
                 <div class="title">
                     <!-- <a href="{!! URL::previous() !!}">Kembali</a>  -->
-                    <a href="{!! url('/') !!}">Kembali</a> 
+                    <a href="{!! url('/home') !!}">Kembali</a> 
                 </div>
             </div>
         </div>

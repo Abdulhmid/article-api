@@ -33,7 +33,7 @@
             <li class="header">Setting</li>
 
             <li class="{!! $segment == 'config' ? 'active' : '' !!}">
-                <a href="{!! url('config') !!}">
+                <a href="{!! url('modules/access') !!}">
                     <i class="fa fa-user-secret"></i> <span>Konfigurasi</span>
                 </a>
             </li>

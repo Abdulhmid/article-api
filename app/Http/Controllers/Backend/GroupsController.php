@@ -13,6 +13,7 @@ use App\Models as Md;
 
 class GroupsController extends Controller
 {
+    use AccessCheckerTrait;
     protected $model;
     protected $title = "Grup Pengguna";
     protected $url = "groups";
@@ -20,13 +21,16 @@ class GroupsController extends Controller
     protected $form;
 
     public function __construct(
-        Md\Groups $model
+        Md\Groups $model,
+        Md\Modules $modules
     )
     {
         $this->model    = $model;
+        $this->modules  = $modules;
         $this->form     = GroupsForm::class;
 
         /* For Acl */
+        $this->info = $this->modules->makeInfo($this->url);
     }
 
     /**
@@ -36,6 +40,7 @@ class GroupsController extends Controller
      */
     public function index(GroupsDataTables $dataTable)
     {
+        $this->checkAccess('index');
         $data['title'] = $this->title;
         $data['breadcrumb'] = $this->url;
 
@@ -49,6 +54,7 @@ class GroupsController extends Controller
      */
     public function create(FormBuilder $formBuilder)
     {
+        $this->checkAccess('create');
         $form = $formBuilder->create($this->form, [
             'method' => 'POST',
             'route' => $this->url . '.store'
@@ -69,6 +75,7 @@ class GroupsController extends Controller
      */
     public function store(Requests\GroupsRequest $request)
     {
+        $this->checkAccess('create');        
         $query = $this->model->create($request->except(['save_continue']));
         $result = $query->id;
         $save_continue = \Input::get('save_continue');
@@ -96,6 +103,7 @@ class GroupsController extends Controller
      */
     public function edit(FormBuilder $formBuilder, $id)
     {
+        $this->checkAccess('edit');
         $model = $this->model->find($id);
 
         $form = $formBuilder->create($this->form, [
@@ -120,6 +128,7 @@ class GroupsController extends Controller
      */
     public function update(Requests\GroupsRequest $request, $id)
     {
+        $this->checkAccess('edit');
         $query = $this->model->find($id)->update($request->except(['save_continue']));
         $result = $id;
         $save_continue = \Input::get('save_continue');
@@ -139,6 +148,7 @@ class GroupsController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkAccess('delete');
         $find = $this->model->find($id);
 
         $find->delete();

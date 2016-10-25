@@ -10,10 +10,11 @@ use App\Http\Controllers\Controller;
 use Kris\LaravelFormBuilder\FormBuilder;
 use App\Forms\UsersForm;
 use App\User;
-use App\Models as Model;
+use App\Models as Md;
 
 class UsersController extends Controller
 {
+    use AccessCheckerTrait;
     protected $model;
     protected $title = "User ";
     protected $url = "users";
@@ -21,11 +22,15 @@ class UsersController extends Controller
     protected $form;
 
     public function __construct(
-        User $model
+        User $model,
+        Md\Modules $modules
     )
     {
         $this->model        = $model;
+        $this->modules      = $modules;
         $this->form         = UsersForm::class;
+        /* For Acl */
+        $this->info = $this->modules->makeInfo($this->url);
     }
 
     /**
@@ -35,6 +40,7 @@ class UsersController extends Controller
      */
     public function index(UsersDataTables $dataTable)
     {
+        $this->checkAccess('index');
         $data['title'] = $this->title;
         $data['breadcrumb'] = $this->url;
 
@@ -48,6 +54,7 @@ class UsersController extends Controller
      */
     public function create(FormBuilder $formBuilder)
     {
+        $this->checkAccess('create');
         $form = $formBuilder->create($this->form, [
             'method' => 'POST',
             'route' => $this->url . '.store'
@@ -74,6 +81,7 @@ class UsersController extends Controller
      */
     public function store(Requests\UsersRequest $request)
     {
+        $this->checkAccess('create');
         $input = $request->only([
                     'username','name','email','photo','group_id'
                  ]);
@@ -115,6 +123,7 @@ class UsersController extends Controller
      */
     public function edit(FormBuilder $formBuilder, $id)
     {
+        $this->checkAccess('edit');
         $model = $this->model->find($id);
 
         $form = $formBuilder->create($this->form, [
@@ -146,6 +155,7 @@ class UsersController extends Controller
      */
     public function update(Requests\UsersRequest $request, $id)
     {
+        $this->checkAccess('edit');
         $input = $request->only([
                     'username','name','email','group_id'
                 ]);
@@ -178,6 +188,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkAccess('delete');
         $find = $this->model->find($id);
 
         $find->delete();
