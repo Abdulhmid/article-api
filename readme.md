@@ -31,6 +31,10 @@ Penggunaan Api API
 
 API Login
 ------------
+- Path : 
+    ```
+       $path/api/v1/login
+    ```
 - Contoh Penggunaan
 ![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/1.png)
 - Response
@@ -52,6 +56,10 @@ API Login
 
 API Daftar Artikel
 ------------
+- Path : 
+    ```
+       $path/api/v1/article
+    ```
 - Contoh Penggunaan
 ![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/2.png)
 - Response
@@ -81,6 +89,10 @@ API Daftar Artikel
 
 API Ambil Artikel Berdasarkan ID
 ------------
+- Path : 
+    ```
+       $path/api/v1/article/{$id}
+    ```
 - Contoh Penggunaan
 ![alt tag](https://raw.githubusercontent.com/Abdulhmid/article-api/master/public/photos/3.png)
 - Response
